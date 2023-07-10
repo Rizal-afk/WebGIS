@@ -139,7 +139,9 @@
       let dataSet = [];
       async function getData() {
         try {
-          const resp = await axios.get("https://webgisapi.vercel.app/titikEmp");
+          const resp = await axios.get(
+            "https://web-gis-back-end.vercel.app/titikEmp"
+          );
           dataSet = resp.data;
           loadData(dataSet);
         } catch (err) {

@@ -175,9 +175,13 @@
 
       async function getData() {
         try {
-          const Emp = await axios.get("https://webgisapi.vercel.app/titikEmp");
+          const Emp = await axios.get(
+            "https://web-gis-back-end.vercel.app/titikEmp"
+          );
           titikEmp = Emp.data;
-          const Fes = await axios.get("https://webgisapi.vercel.app//titikFes");
+          const Fes = await axios.get(
+            "https://web-gis-back-end.vercel.app/titikFes"
+          );
           titikFes = Fes.data;
           console.log(titikFes);
           loadData(titikEmp, titikFes);
