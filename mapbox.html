@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Demo: Add custom markers in Mapbox GL JS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Icon Font Stylesheet -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet" />
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
+    <link
+      href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans"
+      rel="stylesheet"
+    />
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link
+      href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+      .marker {
+        background-image: url("img/mapbox-icon.png");
+        background-size: cover;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        cursor: pointer;
+      }
+      .mapboxgl-popup {
+        max-width: 200px;
+      }
+      .mapboxgl-popup-content {
+        text-align: center;
+        font-family: "Open Sans", sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <a
+      href="index.html"
+      class="btn btn-lg btn-primary btn-lg-square back-to-previous"
+      ><i class="bi bi-arrow-left"></i
+    ></a>
+    <script>
+      mapboxgl.accessToken =
+        "pk.eyJ1Ijoicml6YWwyNTEiLCJhIjoiY2xpdnN0eDUxMDg1azNybXA1aGhvdGVubyJ9.i9U8tU0aKGA5b4k_gLzBfA";
+
+      const map = new mapboxgl.Map({
+        container: "map",
+        style: "mapbox://styles/mapbox/satellite-streets-v12",
+        center: [121.38173, -2.565095],
+        zoom: 12,
+      });
+
+      async function getData() {
+        try {
+          const resp = await axios.get("http://localhost:5000/data");
+          dataSet = resp.data[0];
+          console.log(dataSet);
+          loadData(dataSet);
+        } catch (err) {
+          // Handle Error Here
+          console.error(err);
+        }
+      }
+      async function loadData(data) {
+        for (const feature of data) {
+          // create a HTML element for each feature
+          const el = document.createElement("div");
+          el.className = "marker";
+          let koordinat = [feature.X, feature.Y];
+          // make a marker for each feature and add it to the map
+          new mapboxgl.Marker(el)
+            .setLngLat(koordinat)
+            .setPopup(
+              new mapboxgl.Popup({ offset: 10 }) // add popups
+                .setHTML(`<h5>Titik ${feature.Label}</h5>`)
+            )
+            .addTo(map);
+        }
+      }
+      getData();
+    </script>
+  </body>
+</html>

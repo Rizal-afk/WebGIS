@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Web GIS PT Vale</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="" name="keywords" />
+    <meta content="" name="description" />
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon" />
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Icon Font Stylesheet -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet" />
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
+    <link
+      href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <!-- header start -->
+    <div class="container-fluid bg-dark px-0">
+      <div class="row gx-0">
+        <div class="col-lg-3 bg-dark d-none d-lg-block">
+          <a
+            href="index.html"
+            class="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center justify-content-center"
+          >
+            <img
+              src="./img/logovale.png"
+              alt="Logo"
+              width="50"
+              height="50"
+              class="d-inline-block align-text-top"
+            />
+            <h2 class="m-0 text-primary text-uppercase">Vale</h2>
+          </a>
+        </div>
+        <div class="col-lg-3">
+          <nav class="navbar navbar-expand-lg bg-dark navbar-dark p-2 m-0">
+            <a
+              href="index.html"
+              class="navbar-brand w-20 h-20 m-0 p-0 d-block d-lg-none align-items-center justify-content-center"
+            >
+              <img
+                src="./img/logovale.png"
+                alt="Logo"
+                width="50"
+                height="50"
+                class="d-inline-block align-text-middle m-0"
+              />
+              <h2 class="m-0 text-primary text-uppercase d-inline-block">
+                VALE
+              </h2>
+            </a>
+            <button
+              type="button"
+              class="navbar-toggler"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarCollapse"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div
+              class="collapse navbar-collapse justify-content-between"
+              id="navbarCollapse"
+            >
+              <div class="navbar-nav mr-auto py-0">
+                <a href="index.html" class="nav-item nav-link active"
+                  >Beranda</a
+                >
+                <a href="about.html" class="nav-item nav-link">Tentang</a>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <!-- Header End -->
+
+    <div class="container-xxl py-5">
+      <div class="container">
+        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+          <h6 class="section-title text-center text-primary text-uppercase">
+            Rute EMP
+          </h6>
+          <h1 class="mb-5">
+            Titik Rute <span class="text-primary text-uppercase">EMP</span>
+          </h1>
+        </div>
+      </div>
+      <div class="row justify-content-md-center" id="emp"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"
+      integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"
+      integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      let dataSet = [];
+      async function getData() {
+        try {
+          const resp = await axios.get("https://webgisapi.vercel.app/titikEmp");
+          dataSet = resp.data;
+          loadData(dataSet);
+        } catch (err) {
+          // Handle Error Here
+          console.error(err);
+        }
+      }
+
+      var output = "";
+      async function loadData(data) {
+        data.sort((a, b) => {
+          let fa = a.Label.toLowerCase(),
+            fb = b.Label.toLowerCase();
+
+          if (fa < fb) {
+            return -1;
+          }
+          if (fa > fb) {
+            return 1;
+          }
+          return 0;
+        });
+        for (var j = 0; j < data.length; j++) {
+          output += `
+            <div class="col-lg-2 col-sm-6 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title text-center py-2">${data[j].Label}</h5>
+                <div class="text-center">
+                  <a class="btn btn-primary text-center submit" href="${data[j].Link}">Lihat Rute</a>
+                </div>
+              </div>
+            </div>
+          </div>`;
+          document.getElementById("emp").innerHTML = output;
+          // document.querySelectorAll(".submit").onclick = function () {
+          //   var href = document.querySelector("a").href;
+          //   alert(href);
+          // };
+        }
+        let submit = document.querySelectorAll(".submit");
+        for (const element of submit) {
+          element.onclick = function () {
+            var href = element.href;
+            if (href == "http://localhost:5000/emp.html#") {
+              Swal.fire(
+                "Titik Belum Tersedia di Maps",
+                "Silahkan Pilih Rute yang Lain",
+                "error"
+              );
+            }
+          };
+        }
+      }
+      getData();
+    </script>
+  </body>
+</html>

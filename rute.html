@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bootstrap demo</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+      crossorigin="anonymous"
+    />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <h1>Hello, world!</h1>
+    <p id="p1">asdadsa</p>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>EMP</th>
+          <th>X</th>
+          <th>Y</th>
+          <th>Label</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"
+      integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"
+      integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      let dataSet = [];
+      async function getData() {
+        try {
+          const resp = await axios.get("http://localhost:5000/data");
+          dataSet = resp.data[0];
+          console.log(dataSet);
+          loadData(dataSet);
+        } catch (err) {
+          // Handle Error Here
+          console.error(err);
+        }
+      }
+      // const getData = async () => {
+      //   try {
+      //     const resp = await axios.get("http://localhost:5000/data");
+      //     dataSet = resp.data[0];
+      //     console.log(dataSet[2]);
+      //     return dataSet;
+      //     // loadData(dataSet);
+      //   } catch (err) {
+      //     // Handle Error Here
+      //     console.error(err);
+      //   }
+      // };
+      let output = "";
+      let no = 1;
+      async function loadData(data) {
+        for (var j = 0; j < data.length; j++) {
+          output +=
+            `
+        <tr>
+          <td>` +
+            no++ +
+            `</td>
+          <td> ${data[j].EMP}</td>
+          <td> ${data[j].X}</td>
+          <td> ${data[j].Y}</td>
+          <td> ${data[j].Label}</td>
+        </tr>`;
+          document.querySelector("tbody").innerHTML = output;
+          document.getElementById("p1").innerHTML = data[j].EMP;
+        }
+      }
+      getData();
+      // for (var j = 0; j < dataBase.length; j++) {
+      //   console.log(dataBase[j]);
+      // }
+      // let output = "";
+      // let no = 0;
+      // dataSet.forEach((el) => {
+      //   output =
+      //     +`
+      //   <tr>
+      //     <td>` +
+      //     no++ +
+      //     `</td>
+      //     <td> ${el[no].EMP}</td>
+      //     <td> ${el[no].X}</td>
+      //     <td> ${el[no].Y}</td>
+      //     <td> ${el[no].Label}</td>
+      //     <td
+      //   </tr>`;
+      // });
+      // document.querySelector("tbody").innerHTML = output;
+      // const loadData = (data) => {
+      //   let no = 0;
+      //   const output = data
+      //     .map((el) => {
+      //       return;
+      //       `
+      //   <tr>
+      //     <td>` +
+      //         no++ +
+      //         `</td>
+      //     <td> ${el[no].EMP}</td>
+      //     <td> ${el[no].X}</td>
+      //     <td> ${el[no].Y}</td>
+      //     <td> ${el[no].Label}</td>
+      //   </tr>`;
+      //     })
+      //     .join("");
+      //   document.querySelector("tbody").innerHTML = output;
+      // };
+      // getData();
+    </script>
+  </body>
+</html>
