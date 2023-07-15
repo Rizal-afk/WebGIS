@@ -61,7 +61,7 @@
       <!-- Spinner End -->
 
       <!-- Header Start -->
-      <div class="container-fluid bg-dark px-0">
+      <div class="container-fluid bg-dark px-0 fixed-top">
         <div class="row gx-0">
           <div class="col-lg-3 bg-dark d-none d-lg-block">
             <a
@@ -108,10 +108,10 @@
                 id="navbarCollapse"
               >
                 <div class="navbar-nav mr-auto py-0">
-                  <a href="index.html" class="nav-item nav-link active"
+                  <a href="#beranda" class="nav-link active"
                     >Beranda</a
                   >
-                  <a href="#about" class="nav-item nav-link">Informasi</a>
+                  <a href="#informasi" class="nav-link">Informasi</a>
                 </div>
               </div>
             </nav>
@@ -120,24 +120,25 @@
       </div>
       <!-- Header End -->
 
-      <!-- Carousel Start -->
-      <div class="container-fluid p-0 mb-5">
-        <div
+      <!-- Beranda -->
+      <section id="beranda" class="section">
+        <div class="container-fluid p-0 mb-5">
+          <div
           id="header-carousel"
           class="carousel slide"
           data-bs-ride="carousel"
-        >
+          >
           <div class="carousel-inner">
             <div class="carousel-item active">
               <img class="w-100" src="img/bgvale.jpg" alt="Image" />
               <div
                 class="carousel-caption d-flex flex-column align-items-center justify-content-center"
               >
-                <div class="p-5" style="max-width: 700px">
-                  <h6
-                    class="section-title text-center text-primary text-uppercase"
-                  >
-                    PT. VALE INDONESIA Tbk
+              <div class="p-5" style="max-width: 700px">
+                <h6
+                class="section-title text-center text-primary text-uppercase"
+                >
+                PT. VALE INDONESIA Tbk
                   </h6>
                   <h2 class="display-5 text-white animated slideInDown">
                     JALUR EVAKUASI EMERGENCY
@@ -152,20 +153,23 @@
                       href="map.html"
                       class="btn btn-light py-md-3 px-md-5 animated slideInRight"
                       >MAP</a
-                    >
-                  </div>
+                      >
+                    </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <!-- Carousel End -->
+    </section>
+      <!-- Beranda End -->
 
       <!-- About Start -->
-      <div class="container-xxl py-5" id="about">
-        <div class="container">
-          <div class="row g-5 align-items-center">
+      <section id="informasi" class="section">
+        
+        <div class="container-xxl py-5">
+          <div class="container">
+            <div class="row g-5 align-items-center">
             <div class="col-lg-6">
               <h6 class="section-title text-start text-primary text-uppercase">
                 Informasi
@@ -204,30 +208,30 @@
               <div class="row g-3">
                 <div class="col-6 text-end">
                   <img
-                    class="img-fluid rounded w-75 wow zoomIn"
-                    data-wow-delay="0.1s"
-                    src="img/about-1.jpg"
+                  class="img-fluid rounded w-75 wow zoomIn"
+                  data-wow-delay="0.1s"
+                  src="img/about-1.jpg"
                     style="margin-top: 25%"
-                  />
+                    />
                 </div>
                 <div class="col-6 text-start">
                   <img
-                    class="img-fluid rounded w-100 wow zoomIn"
-                    data-wow-delay="0.3s"
+                  class="img-fluid rounded w-100 wow zoomIn"
+                  data-wow-delay="0.3s"
                     src="img/about-2.jpg"
                   />
                 </div>
                 <div class="col-6 text-end">
                   <img
-                    class="img-fluid rounded w-50 wow zoomIn"
-                    data-wow-delay="0.5s"
-                    src="img/about-3.jpg"
+                  class="img-fluid rounded w-50 wow zoomIn"
+                  data-wow-delay="0.5s"
+                  src="img/about-3.jpg"
                   />
                 </div>
                 <div class="col-6 text-start">
                   <img
-                    class="img-fluid rounded w-75 wow zoomIn"
-                    data-wow-delay="0.7s"
+                  class="img-fluid rounded w-75 wow zoomIn"
+                  data-wow-delay="0.7s"
                     src="img/about-4.jpg"
                   />
                 </div>
@@ -236,12 +240,13 @@
           </div>
         </div>
       </div>
+    </section>
       <!-- About End -->
-
+      
       <!-- Footer Start -->
       <div
-        class="container-fluid bg-primary text-light footer wow fadeIn"
-        data-wow-delay="0.1s"
+      class="container-fluid bg-primary text-light footer wow fadeIn"
+      data-wow-delay="0.1s"
       >
         <div class="container pb-3">
           <div class="row">

@@ -55,48 +55,36 @@
     return false
   })
 
-  // Facts counter
-  $('[data-toggle="counter-up"]').counterUp({
-    delay: 10,
-    time: 2000
-  })
-
-  // Modal Video
   $(document).ready(function () {
-    let $videoSrc
-    $('.btn-play').click(function () {
-      $videoSrc = $(this).data('src')
-    })
-    console.log($videoSrc)
+    $('.nav-link').click(function(e) {
 
-    $('#videoModal').on('shown.bs.modal', function (e) {
-      $('#video').attr('src', $videoSrc + '?autoplay=1&amp;modestbranding=1&amp;showinfo=0')
-    })
+        $('.nav-link').removeClass('active');
 
-    $('#videoModal').on('hide.bs.modal', function (e) {
-      $('#video').attr('src', $videoSrc)
-    })
-  })
+        var $this = $(this);
+        if (!$this.hasClass('active')) {
+            $this.addClass('active');
+        }
+        // e.preventDefault();
+    });
+  });
 
-  // Testimonials carousel
-  $('.testimonial-carousel').owlCarousel({
-    autoplay: true,
-    smartSpeed: 1000,
-    margin: 25,
-    dots: false,
-    loop: true,
-    nav: true,
-    navText: [
-      '<i class="bi bi-arrow-left"></i>',
-      '<i class="bi bi-arrow-right"></i>'
-    ],
-    responsive: {
-      0: {
-        items: 1
-      },
-      768: {
-        items: 2
-      }
-    }
-  })
+  $(window).scroll(function(){
+    $('.section').each(function(){
+        
+        if($(window).scrollTop() > $(this).offset().top){
+            // console.log($(this).attr('id'));
+
+            var sectionId = $(this).attr('id');
+            if(sectionId=="beranda"){
+              $('a.nav-link[href="#beranda"]').addClass('active');
+              $('a.nav-link[href="#informasi"]').removeClass('active');
+            }else{
+              $('a.nav-link[href="#informasi"]').addClass('active');
+              $('a.nav-link[href="#beranda"]').removeClass('active');
+            }
+        }
+        
+    });
+});
+    
 })(jQuery)
