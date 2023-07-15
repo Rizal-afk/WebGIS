@@ -171,22 +171,30 @@
               <div class="card-body">
                 <h5 class="card-title text-center py-2">${data[j].Label}</h5>
                 <div class="text-center">
-                  <a class="btn btn-primary text-center submit" href="${data[j].Link}" target="_blank">Lihat Rute</a>
+                  <a class="btn btn-primary text-center submit" href="${data[j].Link}">Lihat Rute</a>
                 </div>
               </div>
             </div>
           </div>`;
           document.getElementById("emp").innerHTML = output;
-          // document.querySelectorAll(".submit").onclick = function () {
-          //   var href = document.querySelector("a").href;
-          //   alert(href);
-          // };
         }
-        let submit = document.querySelectorAll(".submit");
+
+        //set atribut untuk membuka link di new tab
+        let href = [];
+        var a = document.querySelectorAll("a.submit");
+        for (var i = 0; i < a.length; i++) {
+          href = a[i].href; // set the host of each link
+          if (href != "http://127.0.0.1:5500/FrontEnd/emp.html#") {
+            a[i].setAttribute("target", "_blank");
+          }
+        }
+
+        //mengecek titik emp yang belum mempunyai jalur di google maps dan menampilkan notifikasi
+        let submit = document.querySelectorAll("a.submit");
         for (const element of submit) {
           element.onclick = function () {
             var href = element.href;
-            if (href == "https://webgisvale.vercel.app/emp.html#") {
+            if (href == "http://127.0.0.1:5500/FrontEnd/emp.html#") {
               Swal.fire(
                 "Titik Belum Tersedia di Maps",
                 "Silahkan Pilih Rute yang Lain",
