@@ -21,14 +21,6 @@
     z-index: 99;
 }
 
-.back-to-previous{
-    position: fixed;
-    display: none;
-    left: 45px;
-    bottom: 45px;
-    z-index: 99;
-}
-
 /*** Spinner ***/
 #spinner {
     opacity: 0;
@@ -431,10 +423,12 @@
     z-index: 1;
 }
 
+.bg-footer{
+    background-color:#454545;
+}
 .footer {
     position: relative;
-    margin-top: 50px;
-    padding-top: 50px;
+    padding-top: 30px;
 }
 
 .footer .btn.btn-social {
@@ -500,3 +494,4 @@
     padding-right: 0;
     border-right: none;
 }
+
