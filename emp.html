@@ -184,7 +184,7 @@
         var a = document.querySelectorAll("a.submit");
         for (var i = 0; i < a.length; i++) {
           href = a[i].href; // set the host of each link
-          if (href != "http://127.0.0.1:5500/FrontEnd/emp.html#") {
+          if (href != "https://jalurevakuasivale.vercel.app/emp.html#") {
             a[i].setAttribute("target", "_blank");
           }
         }
@@ -194,7 +194,7 @@
         for (const element of submit) {
           element.onclick = function () {
             var href = element.href;
-            if (href == "http://127.0.0.1:5500/FrontEnd/emp.html#") {
+            if (href == "https://jalurevakuasivale.vercel.app/emp.html#") {
               Swal.fire(
                 "Titik Belum Tersedia di Maps",
                 "Silahkan Pilih Rute yang Lain",
