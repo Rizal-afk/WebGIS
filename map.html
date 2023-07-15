@@ -171,11 +171,11 @@
       async function getData() {
         try {
           const Emp = await axios.get(
-            "https://web-gis-back-end.vercel.app/titikEmp"
+            "https://web-gis-back-end.vercel.app/titikEmp" //mengambil data titik emp
           );
           titikEmp = Emp.data;
           const Fes = await axios.get(
-            "https://web-gis-back-end.vercel.app/titikFes"
+            "https://web-gis-back-end.vercel.app/titikFes" //mengambil data titik fes
           );
           titikFes = Fes.data;
           console.log(titikFes);
