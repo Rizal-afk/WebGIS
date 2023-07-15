@@ -171,7 +171,7 @@
               <div class="card-body">
                 <h5 class="card-title text-center py-2">${data[j].Label}</h5>
                 <div class="text-center">
-                  <a class="btn btn-primary text-center submit" href="${data[j].Link}" target="_blank">Lihat Rute</a>
+                  <a class="btn btn-primary text-center submit" href="${data[j].Link}"">Lihat Rute</a>
                 </div>
               </div>
             </div>
@@ -186,7 +186,7 @@
         for (const element of submit) {
           element.onclick = function () {
             var href = element.href;
-            if (href == "http://localhost:5000/emp.html#") {
+            if (href == "https://webgisvale.vercel.app/emp.html#") {
               Swal.fire(
                 "Titik Belum Tersedia di Maps",
                 "Silahkan Pilih Rute yang Lain",
