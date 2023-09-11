@@ -52,7 +52,8 @@
         top: 10;
         bottom: 0;
         width: 100%;
-        height: 90%;
+        height: 88%;
+        z-index: 1;
       }
       .marker {
         background-image: url("img/mapbox-icon.png");
@@ -68,6 +69,15 @@
       .mapboxgl-popup-content {
         text-align: center;
         font-family: "Open Sans", sans-serif;
+      }
+      .card {
+        width: 10rem;
+        margin-left: 10px;
+        margin-bottom: 10px;
+      }
+      .card img {
+        width: 20px;
+        margin-top: 5px;
       }
     </style>
   </head>
@@ -120,7 +130,7 @@
             >
               <div class="navbar-nav mr-auto py-0">
                 <a href="index.html" class="nav-item nav-link">Beranda</a>
-                <a href="index.html#about" class="nav-item nav-link"
+                <a href="index.html#informasi" class="nav-item nav-link"
                   >Informasi</a
                 >
               </div>
@@ -130,6 +140,16 @@
       </div>
     </div>
     <div id="map"></div>
+    <div class="card fixed-bottom">
+      <div class="card-body">
+        <p style="font-family: Open Sans, sans-serif">Keterangan:</p>
+        <img src="img/marker-icon-2x-red.png" />
+        <span>: Titik FES</span>
+        <br />
+        <img src="img/marker-icon-2x-blue.png" />
+        <span>: Titik EMP</span>
+      </div>
+    </div>
     <script
       src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
       integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
