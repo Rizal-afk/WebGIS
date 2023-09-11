@@ -162,14 +162,8 @@
       var Satellite = L.tileLayer(
         "https://mt2.google.com/vt/lyrs=s&x={x}&y={y}&z={z}"
       );
-      var OpenStreetMap = L.tileLayer(
-        "https://tile.openstreetmap.org/{z}/{x}/{y}.png"
-      );
       var Roads = L.tileLayer(
         "https://mt1.google.com/vt/lyrs=h&x={x}&y={y}&z={z}"
-      );
-      var Hybrid = L.tileLayer(
-        "https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}"
       );
 
       const map = L.map("map", {
@@ -181,9 +175,7 @@
       const baseLayers = {
         Maps: Maps,
         Satellite: Satellite,
-        OpenStreetMap: OpenStreetMap,
         Roads: Roads,
-        Hybrid: Hybrid,
       };
 
       const layerControl = L.control.layers(baseLayers).addTo(map);
